@@ -107,8 +107,8 @@ if __name__ == '__main__':
     cursor.execute(
         "CREATE TABLE IF NOT EXISTS all_matches (match_id text primary key, patch text, t1_top integer, t1_jng integer, t1_mid integer, t1_adc integer, t1_sup integer, t2_top integer, t2_jgl integer, t2_mid integer, t2_adc integer, t2_sup integer, win text);")
 
-    dev_key = "RGAPI-7b5e38b1-17da-4508-9981-7064a6c9e150"
-    start_name = "Weldope"
+    dev_key = "RGAPI-78009c8d-9c12-443d-a2a9-bfaa41853e55"
+    start_name = "DAG Papivia"
     start_puuid = get_puuid(dev_key, start_name)
     time_spent = 0
 
@@ -116,7 +116,7 @@ if __name__ == '__main__':
     master_match_ids = get_match_ids(dev_key, start_puuid)
 
     counter = 0
-    while time_spent < 30000:
+    while time_spent < 36000:
 
         if counter == len(master_match_ids):
             break
@@ -137,5 +137,5 @@ if __name__ == '__main__':
 
             print("Games fetched, wait 2 min now")
             time.sleep(121)
-            time_spent = time_spent + 125
+            time_spent = time_spent + 121
             print("Time spent: " + str(time_spent))

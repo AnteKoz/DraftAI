@@ -3,6 +3,7 @@ from sqlite3 import Error
 from sklearn import tree
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import GaussianNB, CategoricalNB, MultinomialNB
+from sklearn.neural_network import MLPClassifier
 
 
 def create_connection():
@@ -76,14 +77,18 @@ if __name__ == '__main__':
     test_set = data_set[-test_size:]
     test_target = target[-test_size:]
 
+    mlp = MLPClassifier(activation='logistic', hidden_layer_sizes=(100, 3), random_state=1, max_iter=50, verbose=True)
+    mlp = mlp.fit(training_set, training_target)
+    results = mlp.predict(test_set)
+
     # gnb = CategoricalNB()
     # gnb = gnb.fit(training_set, training_target)
     # results = gnb.predict(test_set)
 
-    clf = tree.DecisionTreeClassifier()
-    clf = clf.fit(training_set, training_target)
+    # clf = tree.DecisionTreeClassifier()
+    # clf = clf.fit(training_set, training_target)
+    # results = clf.predict(test_set)
 
-    results = clf.predict(test_set)
     correct = 0
     for i in range(0, test_size):
         if results[i] == test_target[i]:
@@ -91,6 +96,6 @@ if __name__ == '__main__':
 
     print("Accuracy: " + str(correct / test_size))
 
-    tree.plot_tree(clf, max_depth=1)
-    plt.figure(figsize=(64.0, 48.0))
-    plt.show()
+    # tree.plot_tree(clf, max_depth=1)
+    # plt.figure(figsize=(64.0, 48.0))
+    # plt.show()
